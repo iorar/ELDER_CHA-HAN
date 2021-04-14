@@ -1,8 +1,9 @@
 version: "3.9"
 services:
-  discordpy-cog-test-run:
+  discord-dicebot:
     build:
       context: ./
       dockerfile: Dockerfile
     environment:
       - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN:?err}
+    restart: always
