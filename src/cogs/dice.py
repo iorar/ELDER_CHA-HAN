@@ -47,7 +47,7 @@ class Dice(commands.Cog):
             return ret
         if "/" in s:
             a = s.split("/")
-            ret *= a[0]
+            ret *= self.term(a[0])
             for item in a[1:]:
                 ret /= self.term(item)
             return ret
