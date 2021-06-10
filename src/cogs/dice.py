@@ -11,19 +11,63 @@ class Dice(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
+    async def starter(self, ctx, s):
+        self.raw = s.replace(" ", "")
+        self.script = self.raw
+        self.result = 0
+        
+        self.calc(s)
+
+        await ctx.send("s -> (" + self.script + ") -> " + str(self.result))
+
     @commands.command(name="dice", aliases=["d"])
-    async def _hello(self, ctx, arg):
+    def calc(self,s):
         """dices"""
-        dicenum = arg.split("d")
-        # ダイスを振る
-        # dicenum[0]:振るダイスの数 dicenum[1]:何面ダイスを振るか
-        dicecon = []
-        for i in range(int(dicenum[0])):
-            dicecon.append(random.randint(1, int(dicenum[1])))
-        dicecon_str = [str(n) for n in dicecon]
-        await ctx.send(
-            "dice -> (" + ",".join(dicecon_str) + ") -> " + str(sum(dicecon))
-        )
+        ret = 0
+        if "-" in s :
+            a = s.split("-")
+            ret += self.calc(a[0])
+            for item in a[1:] :
+                ret -= self.calc(item)
+            return ret
+        if "+" in s :
+            a = s.split("+")
+            for item in a :
+                ret += self.term(item)
+            return ret
+        return self.term(s)
+            
+    # 式を部分で処理する関数
+    # 乗法と除法を処理
+    def term(self,s):
+        ret = 1
+        if "*" in s :
+            a = s.split("*")
+            for item in a :
+                ret *= self.term(item)
+            return ret
+        if "/" in s :
+            a = s.split("/")
+            for item in a :
+                ret /= self.term(item)
+            return ret
+        if "d" in s :
+            return self.dice(s)
+        return int(s)
+
+    # ダイスを振る関数
+    # ダイス部分を処理
+    def dice(self,s):
+        dicenum , sidenum = s.split("d")
+        ret = 0
+        prscript = []
+        for i in range(int(dicenum)):
+            a = random.randint(1, int(sidenum))
+            prscript.append(a)
+            ret += a
+            prscript = [str(i) for i in prscript]
+            self.script = self.script.replace(s, "("+",".join(prscript)+")",1)
+        return ret
 
 
 def setup(bot: commands.Bot):
