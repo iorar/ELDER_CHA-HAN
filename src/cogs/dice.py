@@ -11,26 +11,25 @@ class Dice(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
+    @commands.command(name="dice", aliases=["d"])
     async def starter(self, ctx, s):
         self.raw = s.replace(" ", "")
         self.script = self.raw
-        self.result = 0
 
-        self.calc(s)
+        self.result = self.calc(s)
 
-        await ctx.send("s -> (" + self.script + ") -> " + str(self.result))
+        await ctx.send(s + " -> "+ self.script + " -> " + str(self.result))
 
-    @commands.command(name="dice", aliases=["d"])
     def calc(self, s):
         """dices"""
         ret = 0
-        if "-" in s:
+        if '-' in s:
             a = s.split("-")
             ret += self.calc(a[0])
             for item in a[1:]:
                 ret -= self.calc(item)
             return ret
-        if "+" in s:
+        if '+' in s:
             a = s.split("+")
             for item in a:
                 ret += self.term(item)
@@ -65,8 +64,8 @@ class Dice(commands.Cog):
             a = random.randint(1, int(sidenum))
             prscript.append(a)
             ret += a
-            prscript = [str(i) for i in prscript]
-            self.script = self.script.replace(s, "(" + ",".join(prscript) + ")", 1)
+        prscript = [str(i) for i in prscript]
+        self.script = self.script.replace(s, "(" + ",".join(prscript) + ")", 1)
         return ret
 
 
