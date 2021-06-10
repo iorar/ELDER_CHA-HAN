@@ -17,19 +17,19 @@ class Dice(commands.Cog):
         self.script = self.raw
 
         self.result = self.calc(s)
-
-        await ctx.send(s + " -> "+ self.script + " -> " + str(self.result))
+        self.script = self.script.replace("*", "\*")
+        await ctx.send(s + " -> " + self.script + " -> " + str(self.result))
 
     def calc(self, s):
         """dices"""
         ret = 0
-        if '-' in s:
+        if "-" in s:
             a = s.split("-")
             ret += self.calc(a[0])
             for item in a[1:]:
                 ret -= self.calc(item)
             return ret
-        if '+' in s:
+        if "+" in s:
             a = s.split("+")
             for item in a:
                 ret += self.term(item)
@@ -47,7 +47,8 @@ class Dice(commands.Cog):
             return ret
         if "/" in s:
             a = s.split("/")
-            for item in a:
+            ret *= a[0]
+            for item in a[1:]:
                 ret /= self.term(item)
             return ret
         if "d" in s:
