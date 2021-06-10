@@ -2,7 +2,7 @@
     "editor.formatOnSave": true,
     "python.formatting.provider": "black",
     "python.venvPath": "${workspaceFolder}/.venv",
-    "python.pythonPath": "C:\\Users\\Btysk\\AppData\\Local\\Microsoft\\WindowsApps\\python3",
+    "python.pythonPath": "/usr/local/bin/python",
     "python.languageServer": "Pylance",
     "[python]": {
         "editor.formatOnPaste": false,
