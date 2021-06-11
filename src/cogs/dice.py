@@ -16,7 +16,7 @@ class Dice(commands.Cog):
         self.raw = s.replace(" ", "")
         self.script = self.raw
 
-        self.result = self.calc(s)
+        self.result = self.calc(self.raw)
         self.script = self.script.replace("*", "\*")
         await ctx.send(s + " -> " + self.script + " -> " + str(self.result))
 
