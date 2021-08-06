@@ -10,4 +10,7 @@ RUN apt update && apt install -y \
 
 RUN pip install -r ./requirements.txt --no-cache-dir
 
+# 保存時にファイルモードを変えない、なんか改行コードがうまくいく
+RUN git config --global core.filemode false
+
 CMD [ "python", "./src/main.py" ]
