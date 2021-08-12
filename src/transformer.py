@@ -149,7 +149,7 @@ class my_transformer(Transformer):
         right = self.visit(tree.children[1])
         return left * right
 
-    def divisiton(self, tree):
+    def divisition(self, tree):
         left = self.visit(tree.children[0])
         right = self.visit(tree.children[1])
         return left / right
