@@ -74,7 +74,7 @@ class my_transformer(Transformer):
 
         func = Function(parameters, ast)
         self.env.set(key, func)
-        self.env.outbuf.printed += "function dfine OK.\n"
+        self.env.outbuf.printed += "function-define OK.\n"
 
     def if_mine(self, tree):
         if self.visit(tree.children[0]) > 0:
