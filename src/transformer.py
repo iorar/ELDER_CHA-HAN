@@ -131,7 +131,7 @@ class my_transformer(Transformer):
             local_env.set(k, v)
         temptrans = my_transformer(local_env)
         r = temptrans.visit(func.tree())
-        self.env.outbuf.printed = local_env.outbuf.printed
+        self.env.outbuf.printed += local_env.outbuf.printed
         return r
 
     def addition(self, tree):
