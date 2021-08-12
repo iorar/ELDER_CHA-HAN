@@ -1,4 +1,4 @@
-# discordpy-cog-test
+# ELDER_CHA-HAN
 
 ## 使い方
 `git clone` してから `.env` を作る。`sample.env` を参考にすること。

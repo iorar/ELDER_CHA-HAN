@@ -1,5 +1,5 @@
 import asyncio
-from os import chdir
+import os
 
 import discord
 
@@ -14,7 +14,7 @@ import transformer
 
 class parsetree(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
-        chdir("../")
+        os.chdir("./src")
         self.bot = bot
 
         # 文法を読み込む
