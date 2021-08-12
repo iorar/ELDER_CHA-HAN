@@ -14,7 +14,7 @@ import transformer
 
 class parsetree(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
-        chdir("/workspace/src")
+        chdir("../")
         self.bot = bot
 
         # 文法を読み込む
