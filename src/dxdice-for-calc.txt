@@ -1,0 +1,50 @@
+def dxdice(n, c)
+{
+    if (c < 5){
+        prchar "Too small critical";
+        publish;
+        return 0;
+    }
+    if (c > 4){
+        i = 1;
+        j = 1;
+        critical = n;
+        next = 0;
+        total = 0;
+
+        while (not critical == 0)
+        {
+            prsym j;
+            prchar "mmmmmmmmm";
+            major = 0;
+            while (i < critical)
+            {
+                result = 1 dice 10;
+                if(result > (c - 1) ){
+                    next = next + 1;
+                }
+                if(result > major){
+                  major = result;
+                }
+                prsym result;
+                i = i+1;
+            }
+            critical = next;
+            next = 0;
+
+            if (critical > 0){
+                total = total + 10;
+            }
+
+            publish;
+            j = j+1;
+            i = 0;
+        }
+        total = total + major;
+        prchar "sum is";
+        prsym total;
+        publish;
+
+        return 0;
+    }
+}

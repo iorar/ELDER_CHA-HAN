@@ -4,6 +4,6 @@ WORKDIR /usr/src/app
 
 COPY ./requirements.txt ./
 
-RUN apt-get update && apt-get -y install git vim
+RUN apt-get update && apt-get -y install vim
 
 RUN pip install -r ./requirements.txt --no-cache-dir

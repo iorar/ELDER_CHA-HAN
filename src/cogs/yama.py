@@ -12,6 +12,7 @@ class Yama(commands.Cog):
     @commands.command(name="yama", aliases=["yamabiko"])
     async def _yama(self, ctx, arg):
         """Return your word!"""
+        print(arg)
         await ctx.send(arg)
 
 

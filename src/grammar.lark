@@ -1,0 +1,79 @@
+//開始記号
+program: [(state)+]
+
+?state: publish ";"     // バッファ内容を出力してクリアー
+      | flash ";"       // 出力せずにクリアー
+      | expr ";"
+      | def_func        // 関数定義
+      | if_mine         // 条件
+      | loop            // 繰り返し
+      | undef_func ";"  // 定義抹消
+      | def_var ";"     // 変数定義(と代入)
+      | return_state ";"// 返値
+      | print_char ";"  // 固定の文をバッファに追加
+      | print_sym ";"   // 変数の値をバッファに追加
+def_func: "def" new_symbol "(" [parameter ("," parameter)*] ")" "{" program "}"
+undef_func: "undef" symbol
+if_mine: "if" "(" condition ")" "{" program "}"
+loop: "while" "(" condition ")" "{" program "}"
+
+def_var: new_symbol "=" expr
+return_state: "return" expr
+
+print_char: "prchar" "\"" sentence "\""
+print_sym: "prsym" symbol
+publish: "publish"
+flash: "flash"
+
+//expression
+?expr: term
+     | addition
+     | substraction
+addition: expr "+" term
+substraction: expr "-" term
+
+?term: fact
+    | multiplication
+    | divisition
+    | dice
+multiplication: term "*" fact
+divisition: term "/" fact
+dice: term "dice" fact
+
+?fact: number
+     | symbol
+     | priority
+     | function_call
+?priority: "(" expr ")"
+function_call: symbol "(" [expr("," expr)*] ")"
+
+// 条件系(boolが返る)
+?condition: bool
+     | not_mine
+     | or_mine
+     | and_mine
+not_mine: "not" bool
+or_mine: condition "or" bool
+and_mine: condition "and" bool
+
+?bool: number
+     | greater
+     | less
+     | equal
+     | pr_cond
+greater: expr "<" expr
+less: expr ">" expr
+equal: expr "==" expr
+pr_cond: "(" condition ")"
+
+symbol: WORD
+number: SIGNED_NUMBER
+sentence: ((WS)* WORD )+
+
+new_symbol: WORD
+parameter: WORD
+
+%import common.WORD
+%import common.SIGNED_NUMBER
+%import common.WS
+%ignore WS
