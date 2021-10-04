@@ -10,10 +10,10 @@ class fkbty(commands.Cog):
         self.bot = bot
 
     @commands.command(name="fkbt", aliases=["fukubutyo"])
-    async def _fkbty(self, ctx, arg):
-        """Return your word!"""
+    async def _fkbty(self, ctx):
+        """All of us loves FUKUBUTYO."""
         print("ふくぶちょーだいすき")
-        await ctx.send(arg)
+        await ctx.send("ふくぶちょーだいすき")
 
 
 def setup(bot: commands.Bot):
