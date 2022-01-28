@@ -7,6 +7,8 @@ ELDER_CHA-HANはDiscord上で動作するインタプリータbotです。
 ELDER_CHA-HANは元々TRPGのダイスボットとして制作された経緯から、いくつかのレガシー機能を持っています。  
 レガシー機能は現在も利用可能ですが、インタプリータ機能を用いて再現可能です。
 
+![image](https://user-images.githubusercontent.com/57796209/151467538-5703a2a4-34b3-4e0b-9747-7e2e259f2b43.png)
+
 ## 使い方
 
 botを招待し、`.help`と入力・送信してください。
