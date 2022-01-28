@@ -1,9 +1,18 @@
 # ELDER_CHA-HAN
 
-## 使い方
-`git clone` してから `.env` を作る。`sample.env` を参考にすること。
-その後、vscodeでフォルダを開き`F1`→`Remote-Containers: Rebuild and Reopen in Container`で開く。
-main.pyでF5で動く。
+## 概要
 
-- `.devcontainer/devcontainer.json`のname、service
-- `.devcontainer/docker-compose.yaml`、`.docker-compose.yaml`、`.docker-compose.dev.yaml`の名前
+ELDER_CHA-HANはDiscord上で動作するインタプリータbotです。
+
+ELDER_CHA-HANは元々TRPGのダイスボットとして制作された経緯から、いくつかのレガシー機能を持っています。  
+レガシー機能は現在も利用可能ですが、インタプリータ機能を用いて再現可能です。
+
+## 使い方
+
+botを招待し、`.help`と入力・送信してください。
+招待URLが必要な場合は制作者に用途を明記して連絡してください。
+
+## 言語仕様
+
+ELDER_CHA-HANで動作する言語は独自の文法を採用しています。  
+C言語が最も近いです。詳細は仕様策定中。
